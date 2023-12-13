@@ -9,7 +9,7 @@ function Question() {
   ];
 
   return <>
-     {<Card question={QandA} opti={QandA.opti}></Card>}
+     <Card question={QandA} ></Card>
 
   </>;
 
