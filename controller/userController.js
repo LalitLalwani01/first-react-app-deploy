@@ -40,33 +40,35 @@ const getUserById =async(req,res)=>{
     
 }
 
+let hashedPassword;
 let  addNewUser = async(req,res)=>{
     try{
-     const newItem =req.body;
+        const newItem =req.body;
         let pass=newItem.password
         console.log(pass)
-
+        hashedPassword = await  bcrypt.hash(newItem.password, 10)
+        
     let newUser =new UserModel({
         name:newItem.name,
         phone:newItem.phone,
-        password:newItem.password,
+        password:hashedPassword,
         email:newItem.email, 
         age:newItem.age,
         isAdmin:newItem.isAdmin? true:false        
     })
-       await  bcrypt.hash(pass, 10, function(err, hash) {
-        if(err){
-            console.log(err)
-            return
-        }
-        else{
-            console.log(hash)
+      {
+        // if(err){
+        //     console.log(err)
+        //     return
+        // }
+        // else{
+        //     console.log(hash)
           
-            pass=hash
-            // newItem.password=pass
-            // console.log(newItem.password)
-        }
-    })
+        //     pass=hash
+        //     // newItem.password=pass
+        //     // console.log(newItem.password)
+        // }
+    }
 
             // Load hash from your password DB.
 // bcrypt.compare(newUser.password, hash, function(err, result) {
